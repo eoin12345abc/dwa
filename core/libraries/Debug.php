@@ -12,7 +12,8 @@ class Debug {
 		
 		ob_start();
 
-		krumo::dump($data, $label, $backtrace);
+		//krumo::dump($data, $label, $backtrace);
+		//was causing problems so i slashed this out
 
 		return ob_get_clean();
 		
