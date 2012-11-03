@@ -2,6 +2,7 @@
 ## Eclipse
 #################
 
+environment.php
 *.pydevproject
 .project
 .metadata
