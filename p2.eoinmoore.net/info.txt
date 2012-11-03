@@ -1,0 +1,4 @@
+i commented out  line 15 in debug.php cuz it was causing problems
+mysql user -- eoinmoor_eoin
+pass -- eoin12345
+Hey you
