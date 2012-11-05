@@ -35,8 +35,8 @@ class users_controller extends base_controller {
 		
 		# Insert this user into the database 
 			$user_id = DB::instance(DB_NAME)->insert("users", $_POST);	
-			echo "You are signed up.  Please wait a moment while we redirect you, and then sign back in";
-			header('Refresh: 1.6; /users/login');
+			echo "You are now signed up.  Please wait a moment while we redirect you, and then sign back in";
+			header('Refresh: 1.6; http://p2.eoinmoore.net/users/login');
 	}	
 
 	
