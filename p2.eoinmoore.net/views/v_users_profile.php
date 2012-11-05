@@ -1,4 +1,4 @@
-<h1>This is the profile of <?=$user->first_name?></h1>
+<h1>This is the profile of <?=$user->first_name?>  <?=$user->last_name?></h1>
 <? foreach($own_posts as $own_post): ?>
 <?$date = date("D, d M Y", $own_post['created']);?>
 <?$time = date("H:i:s", $own_post['created']);?>
