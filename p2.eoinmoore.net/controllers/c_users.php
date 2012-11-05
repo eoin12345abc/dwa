@@ -17,7 +17,6 @@ class users_controller extends base_controller {
 		
 		# Insert this user into the database
 			$user_id = DB::instance(DB_NAME)->insert("users", $_POST);
-		    sleep(3);
 			
 	}
 	
@@ -35,8 +34,12 @@ class users_controller extends base_controller {
 		
 		# Insert this user into the database 
 			$user_id = DB::instance(DB_NAME)->insert("users", $_POST);	
-			echo "You are now signed up.  Please wait a moment while we redirect you, and then sign back in";
-			header('Refresh: 1.6; url=http://p2.eoinmoore.net/users/login');
+			echo( "you are now signed up");
+			echo( "<br> <a href =/users/login> Please log in </a>");
+	#Router::redirect("/posts/users");   header( "refresh:5;url=wherever.php" );
+	#header("refresh*1.5;Location: /users/login");
+
+			
 	}	
 
 	

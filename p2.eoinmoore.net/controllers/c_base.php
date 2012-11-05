@@ -6,7 +6,7 @@ class base_controller {
 	public $userObj;
 	public $template;
 	public $email_template;
-
+	public $redirect;
 	/*-------------------------------------------------------------------------------------------------
 	
 	-------------------------------------------------------------------------------------------------*/
@@ -24,6 +24,10 @@ class base_controller {
 								
 		# So we can use $user in views			
 			$this->template->set_global('user', $this->user);
+			$this->template->set_global('redirect', $this->redirect);
+			
+		
+			
 			
 	}
 	

@@ -251,5 +251,10 @@ class Router {
 		exit;
 
 	}
+	
+	public static function redirect_lag($url = '/7', $lag =''){
+		header("'refresh:".$lag.";url=".$url."'");
+		exit;
+	}
 
 }
