@@ -119,12 +119,12 @@ class users_controller extends base_controller {
 		# Setup view
 		$this->template->content = View::instance('v_users_profile');
 		$this->template->title   = "Profile of".$this->user->first_name;
-		$q = "SELECT Posts.content, Posts.created
-		FROM Posts
-		LEFT JOIN Users
+		$q = "SELECT posts.content, posts.created
+		FROM posts
+		LEFT JOIN users
 		ON Posts.user_id=Users.user_id
 		WHERE Users.user_id=".$this->user->user_id." 
-		ORDER BY Posts.post_id";
+		ORDER BY posts.post_id";
 		$own_posts=DB::instance(DB_NAME)->select_rows($q);
 		$this->template->content->own_posts = $own_posts;
 		echo $this->template;
