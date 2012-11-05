@@ -21,6 +21,7 @@
         <? if($user): ?>
             
             <a href='/users/logout'>Logout</a>
+			<a href='/users/profile'>View your profile </a>
             <a href='/posts/users/'>Change who you're following</a>
             <a href='/posts/'>View posts</a>
             <a href='/posts/add'>Add a new post</a>

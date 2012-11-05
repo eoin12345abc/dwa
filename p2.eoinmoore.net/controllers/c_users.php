@@ -39,16 +39,6 @@ class users_controller extends base_controller {
 			Router::redirect("/users/login");
 	}	
 
-	public function new_user() {
-		# Setup view
-			$this->template->content = View::instance('v_users_new_user');
-			$this->template->title   = "Signup";
-			
-		# Render template
-			echo $this->template;
-	
-	}
-	
 	
 	public function login($error = NULL) {
 
@@ -129,8 +119,14 @@ class users_controller extends base_controller {
 		# Setup view
 		$this->template->content = View::instance('v_users_profile');
 		$this->template->title   = "Profile of".$this->user->first_name;
-			
-		# Render template
+		$q = "SELECT Posts.content, Posts.created
+		FROM Posts
+		LEFT JOIN Users
+		ON Posts.user_id=Users.user_id
+		WHERE Users.user_id=".$this->user->user_id." 
+		ORDER BY Posts.post_id";
+		$own_posts=DB::instance(DB_NAME)->select_rows($q);
+		$this->template->content->own_posts = $own_posts;
 		echo $this->template;
 	}
 
