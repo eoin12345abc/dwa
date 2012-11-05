@@ -1,5 +1,5 @@
 <?
-$login_count=0;
+
 class users_controller extends base_controller {
 
 	public function __construct() {
@@ -22,8 +22,7 @@ class users_controller extends base_controller {
 	
 	public function p_signup() {
 		
-		# Dump out the results of POST to see what the form submitted
-		print_r($_POST);
+
 		
 		# Encrypt the password	
 			$_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);	
@@ -35,9 +34,21 @@ class users_controller extends base_controller {
 		
 		# Insert this user into the database 
 			$user_id = DB::instance(DB_NAME)->insert("users", $_POST);	
-			echo "You are signed up";
+			echo "You are signed up.  Please wait a moment while we redirect you, and then sign back in";
+			sleep(3);
+			Router::redirect("/users/login");
 	}	
 
+	public function new_user() {
+		# Setup view
+			$this->template->content = View::instance('v_users_new_user');
+			$this->template->title   = "Signup";
+			
+		# Render template
+			echo $this->template;
+	
+	}
+	
 	
 	public function login($error = NULL) {
 
@@ -46,7 +57,7 @@ class users_controller extends base_controller {
 
 		# Pass data to the view
 		$this->template->content->error = $error;
-
+		
 		# Render the view
 		echo $this->template;
 
@@ -72,13 +83,12 @@ class users_controller extends base_controller {
 	   # Login failed
     if($token == "") {
         Router::redirect("/users/login/error"); # Note the addition of the parameter "error"
-		$login_count++;
+		
     }
     # Login passed
     else {
         setcookie("token", $token, strtotime('+2 weeks'), '/');
         Router::redirect("/");
-		$login_count=0;
     }
 }
 
