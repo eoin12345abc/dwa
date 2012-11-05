@@ -1,5 +1,5 @@
 <form method='POST' action='/posts/p_follow'>
-		
+			
 	<? foreach($users as $user): ?>
 	
 		<!-- Print this user's name -->
