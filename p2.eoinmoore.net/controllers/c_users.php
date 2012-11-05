@@ -17,7 +17,8 @@ class users_controller extends base_controller {
 		
 		# Insert this user into the database
 			$user_id = DB::instance(DB_NAME)->insert("users", $_POST);
-		
+		    sleep(3);
+			
 	}
 	
 	public function p_signup() {
@@ -35,8 +36,7 @@ class users_controller extends base_controller {
 		# Insert this user into the database 
 			$user_id = DB::instance(DB_NAME)->insert("users", $_POST);	
 			echo "You are signed up.  Please wait a moment while we redirect you, and then sign back in";
-			sleep(3);
-			Router::redirect("/users/login");
+			header('Refresh: 1.6; /users/login');
 	}	
 
 	
