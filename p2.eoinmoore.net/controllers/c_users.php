@@ -122,8 +122,8 @@ class users_controller extends base_controller {
 		$q = "SELECT posts.content, posts.created
 		FROM posts
 		LEFT JOIN users
-		ON Posts.user_id=Users.user_id
-		WHERE Users.user_id=".$this->user->user_id." 
+		ON posts.user_id=users.user_id
+		WHERE users.user_id=".$this->user->user_id." 
 		ORDER BY posts.post_id";
 		$own_posts=DB::instance(DB_NAME)->select_rows($q);
 		$this->template->content->own_posts = $own_posts;
