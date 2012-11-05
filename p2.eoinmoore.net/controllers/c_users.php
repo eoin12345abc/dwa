@@ -1,5 +1,5 @@
 <?
-
+$login_count=0;
 class users_controller extends base_controller {
 
 	public function __construct() {
@@ -39,16 +39,18 @@ class users_controller extends base_controller {
 	}	
 
 	
-	public function login() {
+	public function login($error = NULL) {
 
-		# Setup view
-			$this->template->content = View::instance('v_users_login');
-			$this->template->title   = "Login";
-			
-		# Render template
-			echo $this->template;
+		# Set up the view
+		$this->template->content = View::instance("v_users_login");
 
-}
+		# Pass data to the view
+		$this->template->content->error = $error;
+
+		# Render the view
+		echo $this->template;
+
+	}
 
 	public function p_login() {
 	
@@ -67,24 +69,20 @@ class users_controller extends base_controller {
 	
 	$token = DB::instance(DB_NAME)->select_field($q);	
 				
-	# If we didn't get a token back, login failed
-	if(!$token) {
-			
-		# Send them back to the login page
-		Router::redirect("/users/login/");
-		
-	# But if we did, login succeeded! 
-	} else {
-			
-		# Store this token in a cookie
-		setcookie("token", $token, strtotime('+1 year'), '/');
-		
-		# Send them to the main page - or whever you want them to go
-		Router::redirect("/");
-					
-	}
+	   # Login failed
+    if($token == "") {
+        Router::redirect("/users/login/error"); # Note the addition of the parameter "error"
+		$login_count++;
+    }
+    # Login passed
+    else {
+        setcookie("token", $token, strtotime('+2 weeks'), '/');
+        Router::redirect("/");
+		$login_count=0;
+    }
+}
 
-	}
+
 
 	public function logout() {
 	
